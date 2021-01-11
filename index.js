@@ -1,5 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from "./App"
+import { WeatherContextProvider } from './weatherContext'
 
-ReactDOM.render(<App></App>, document.getElementById('root'))
+ReactDOM.render(
+    <WeatherContextProvider>
+        <App></App>
+    </WeatherContextProvider>
+    , document.getElementById('root'))
