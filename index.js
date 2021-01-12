@@ -5,6 +5,6 @@ import { WeatherContextProvider } from './weatherContext'
 
 ReactDOM.render(
     <WeatherContextProvider>
-        <App></App>
+        <App />
     </WeatherContextProvider>
     , document.getElementById('root'))

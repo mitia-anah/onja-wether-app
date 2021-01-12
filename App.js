@@ -1,17 +1,12 @@
-import React, { useEffect } from 'react'
+import React from 'react'
+// import Location from './Component/Location'
+import Form from './components/Location'
 
-const CORS_URL = 'https://cors-anywhere.herokuapp.com'
-const BASE_URL = 'https://www.metaweather.com/api/location/search/?'
 function App() {
-    function getLocation() {
-
-    }
-    useEffect(() => {
-
-    })
     return (
         <div>
-            <h1>Weather App</h1>
+            <h3>Weather App</h3>
+            <Form />
         </div>
     )
 }

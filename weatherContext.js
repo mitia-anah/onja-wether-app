@@ -1,41 +1,45 @@
-import React, { createContext, useReducer, useEffect } from 'react'
+import React, { createContext, useEffect, useReducer } from 'react'
 const Context = createContext()
 
 function WeatherContextProvider({ children }) {
+
     const [state, dispatch] = useReducer((state, action) => {
         switch (action.type) {
             case 'LOCATION': {
                 return {
                     ...state,
-                    location: action.data
+                    location: action.location
                 }
             }
-            case 'TODAY_WEATHER': {
+            case 'CITY': {
                 return {
                     ...state,
-                    todayWeather: action.data
+                    query: action.query
                 }
             }
-            case 'TEMPERATURE': {
-                return {
-                    ...state,
-                    temperature: action.data
-                }
-            }
-
             default:
-                break;
+                return state
         }
-        return state
     }, {
         location: [],
-        todayweather: [],
-        temperature: 'c'
+        query: 'london'
     })
-    return <Context.Provider
-        value={{ state, dispatch }}>
+
+    const CORS_URL = 'https://cors-anywhere.herokuapp.com/'
+    const BASE_URL = 'https://www.metaweather.com/api/location/search/?query='
+
+    async function FetchData() {
+        const res = await fetch(CORS_URL + BASE_URL + state.query)
+        const data = await res.json()
+        dispatch({ type: 'LOCATION', location: data })
+    }
+    useEffect(() => {
+        FetchData()
+    }, [])
+
+    return <Context.Provider value={{ state, dispatch, FetchData }}>
         {children}
     </Context.Provider>
 }
 
-export { WeatherContextProvider, Context } 
+export { WeatherContextProvider, Context }

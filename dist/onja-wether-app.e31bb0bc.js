@@ -29772,33 +29772,7 @@ if ("development" === 'production') {
 } else {
   module.exports = require('./cjs/react-dom.development.js');
 }
-},{"./cjs/react-dom.development.js":"node_modules/react-dom/cjs/react-dom.development.js"}],"App.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireWildcard(require("react"));
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-var CORS_URL = 'https://cors-anywhere.herokuapp.com';
-var BASE_URL = 'https://www.metaweather.com/api/location/search/?';
-
-function App() {
-  function getLocation() {}
-
-  (0, _react.useEffect)(function () {});
-  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h1", null, "Weather App"));
-}
-
-var _default = App;
-exports.default = _default;
-},{"react":"node_modules/react/index.js"}],"weatherContext.js":[function(require,module,exports) {
+},{"./cjs/react-dom.development.js":"node_modules/react-dom/cjs/react-dom.development.js"}],"WeatherContext.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -29813,71 +29787,173 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-var Context = (0, _react.createContext)();
+const Context = (0, _react.createContext)();
 exports.Context = Context;
 
-function WeatherContextProvider(_ref) {
-  var children = _ref.children;
-
-  var _useReducer = (0, _react.useReducer)(function (state, action) {
+function WeatherContextProvider({
+  children
+}) {
+  const [state, dispatch] = (0, _react.useReducer)((state, action) => {
     switch (action.type) {
       case 'LOCATION':
         {
-          return _objectSpread(_objectSpread({}, state), {}, {
-            location: action.data
-          });
+          return { ...state,
+            location: action.location
+          };
         }
 
-      case 'TODAY_WEATHER':
+      case 'CITY':
         {
-          return _objectSpread(_objectSpread({}, state), {}, {
-            todayWeather: action.data
-          });
-        }
-
-      case 'TEMPERATURE':
-        {
-          return _objectSpread(_objectSpread({}, state), {}, {
-            temperature: action.data
-          });
+          return { ...state,
+            query: action.query
+          };
         }
 
       default:
-        break;
+        return state;
     }
-
-    return state;
   }, {
     location: [],
-    todayweather: [],
-    temperature: 'c'
-  }),
-      _useReducer2 = _slicedToArray(_useReducer, 2),
-      state = _useReducer2[0],
-      dispatch = _useReducer2[1];
+    query: 'london'
+  });
+  const CORS_URL = 'https://cors-anywhere.herokuapp.com/';
+  const BASE_URL = 'https://www.metaweather.com/api/location/search/?query=';
 
+  async function FetchData() {
+    const res = await fetch(CORS_URL + BASE_URL + state.query);
+    const data = await res.json();
+    dispatch({
+      type: 'LOCATION',
+      location: data
+    });
+  }
+
+  (0, _react.useEffect)(() => {
+    FetchData();
+  }, []);
   return /*#__PURE__*/_react.default.createElement(Context.Provider, {
     value: {
-      state: state,
-      dispatch: dispatch
+      state,
+      dispatch,
+      FetchData
+    }
+  }, children);
+}
+},{"react":"node_modules/react/index.js"}],"components/Location.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _WeatherContext = require("../WeatherContext");
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function Location() {
+  const {
+    state,
+    dispatch
+  } = (0, _react.useContext)(_WeatherContext.Context);
+  const {
+    location
+  } = state;
+  console.log(location);
+  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("p", null, "hahhahah"));
+}
+
+var _default = Location;
+exports.default = _default;
+},{"react":"node_modules/react/index.js","../WeatherContext":"WeatherContext.js"}],"App.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _Location = _interopRequireDefault(require("./components/Location"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// import Location from './Component/Location'
+function App() {
+  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h3", null, "Weather App"), /*#__PURE__*/_react.default.createElement(_Location.default, null));
+}
+
+var _default = App;
+exports.default = _default;
+},{"react":"node_modules/react/index.js","./components/Location":"components/Location.js"}],"weatherContext.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.WeatherContextProvider = WeatherContextProvider;
+exports.Context = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+const Context = (0, _react.createContext)();
+exports.Context = Context;
+
+function WeatherContextProvider({
+  children
+}) {
+  const [state, dispatch] = (0, _react.useReducer)((state, action) => {
+    switch (action.type) {
+      case 'LOCATION':
+        {
+          return { ...state,
+            location: action.location
+          };
+        }
+
+      case 'CITY':
+        {
+          return { ...state,
+            query: action.query
+          };
+        }
+
+      default:
+        return state;
+    }
+  }, {
+    location: [],
+    query: 'london'
+  });
+  const CORS_URL = 'https://cors-anywhere.herokuapp.com/';
+  const BASE_URL = 'https://www.metaweather.com/api/location/search/?query=';
+
+  async function FetchData() {
+    const res = await fetch(CORS_URL + BASE_URL + state.query);
+    const data = await res.json();
+    dispatch({
+      type: 'LOCATION',
+      location: data
+    });
+  }
+
+  (0, _react.useEffect)(() => {
+    FetchData();
+  }, []);
+  return /*#__PURE__*/_react.default.createElement(Context.Provider, {
+    value: {
+      state,
+      dispatch,
+      FetchData
     }
   }, children);
 }
@@ -29923,7 +29999,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50253" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54072" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
