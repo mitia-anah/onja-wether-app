@@ -1,6 +1,6 @@
 import React from 'react'
 // import Location from './Component/Location'
-import Form from './components/Location'
+import Form from './components/Form'
 
 function App() {
     return (

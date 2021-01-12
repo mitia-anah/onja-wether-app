@@ -1,10 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from "./App"
-import { WeatherContextProvider } from './weatherContext'
+import { WeatherContextProvider } from './WeatherContext'
 
 ReactDOM.render(
     <WeatherContextProvider>
-        <App />
+        <App></App>
     </WeatherContextProvider>
     , document.getElementById('root'))
