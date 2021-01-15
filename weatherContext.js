@@ -1,8 +1,8 @@
-import React, { createContext, useEffect, useReducer } from 'react'
+import React, { createContext, useEffect, useReducer, useState } from 'react'
 const Context = createContext()
 
 function WeatherContextProvider({ children }) {
-
+    const [query, setQuery] = useState('London')
     const [state, dispatch] = useReducer((state, action) => {
         switch (action.type) {
             case 'LOCATION': {
@@ -11,10 +11,10 @@ function WeatherContextProvider({ children }) {
                     location: action.location
                 }
             }
-            case 'CITY': {
+            case 'TODAY_WEATHER': {
                 return {
                     ...state,
-                    query: action.query
+                    todayWeather: action.todayWeather
                 }
             }
             default:
@@ -22,22 +22,29 @@ function WeatherContextProvider({ children }) {
         }
     }, {
         location: [],
-        query: 'london'
+        todayWeather: {}
     })
 
-    const CORS_URL = 'https://cors-anywhere.herokuapp.com/'
-    const BASE_URL = 'https://www.metaweather.com/api/location/search/?query='
 
     async function FetchData() {
-        const res = await fetch(CORS_URL + BASE_URL + state.query)
+        const res = await fetch(`https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/search/?query=${query}`)
         const data = await res.json()
+
         dispatch({ type: 'LOCATION', location: data })
+        console.log(data);
+        if (data.length) {
+            const response = await fetch(`https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/${data[0].woeid}`)
+            console.log(data[0].woeid);
+            const todayWeatherData = await response.json()
+            dispatch({ type: 'TODAY_WEATHER', todayWeather: todayWeatherData })
+        }
     }
     useEffect(() => {
         FetchData()
     }, [])
 
-    return <Context.Provider value={{ state, dispatch, FetchData }}>
+
+    return <Context.Provider value={{ state, dispatch, FetchData, setQuery }}>
         {children}
     </Context.Provider>
 }
