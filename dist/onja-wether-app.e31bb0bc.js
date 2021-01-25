@@ -29850,7 +29850,7 @@ function WeatherContextProvider({
     }
   }, children);
 }
-},{"react":"node_modules/react/index.js"}],"Component/SideBar.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js"}],"Component/Modal.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -29866,21 +29866,19 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-function SideBar({
+function Input({
   query,
   setQuery
 }) {
+  const [activeSearch, setActiveSearch] = (0, _react.useState)(false);
   const {
     state,
     dispatch,
     FetchData
   } = (0, _react.useContext)(_WeatherContext.Context);
   const {
-    location,
-    todayWeather
+    location
   } = state;
-  const weatherToday = todayWeather && todayWeather.consolidated_weather && todayWeather.consolidated_weather[0];
-  console.log(weatherToday);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -29891,13 +29889,57 @@ function SideBar({
     });
   }
 
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("form", {
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, activeSearch === false ? /*#__PURE__*/_react.default.createElement("div", {
+    className: "first_page_btn"
+  }, /*#__PURE__*/_react.default.createElement("button", {
+    className: "active_btn",
+    onClick: () => setActiveSearch(!activeSearch)
+  }, "Search For Places"), /*#__PURE__*/_react.default.createElement("button", null, "icon")) : /*#__PURE__*/_react.default.createElement("form", {
     onSubmit: handleSubmit
   }, /*#__PURE__*/_react.default.createElement("input", {
+    className: "inputSearch",
     value: query,
-    placeholder: "Search places",
+    placeholder: "london",
     onChange: e => setQuery(e.target.value)
-  }), /*#__PURE__*/_react.default.createElement("button", null, "Search"), /*#__PURE__*/_react.default.createElement("div", {
+  }), /*#__PURE__*/_react.default.createElement("button", {
+    className: "buttonSearch"
+  }, "Search")));
+}
+
+var _default = Input;
+exports.default = _default;
+},{"react":"node_modules/react/index.js","../WeatherContext":"WeatherContext.js"}],"Component/SideBar.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+var _WeatherContext = require("../WeatherContext");
+
+var _Modal = _interopRequireDefault(require("./Modal"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function SideBar() {
+  const {
+    state
+  } = (0, _react.useContext)(_WeatherContext.Context);
+  const {
+    todayWeather
+  } = state;
+  const weatherToday = todayWeather && todayWeather.consolidated_weather && todayWeather.consolidated_weather[0];
+  console.log(weatherToday);
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
+    className: "sideBar_container"
+  }, /*#__PURE__*/_react.default.createElement(_Modal.default, null), /*#__PURE__*/_react.default.createElement("div", {
     className: "sideBar_content"
   }, /*#__PURE__*/_react.default.createElement("img", {
     className: "today_forcast-img",
@@ -29915,7 +29957,7 @@ function SideBar({
 
 var _default = SideBar;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","../WeatherContext":"WeatherContext.js"}],"Component/MainSide.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","../WeatherContext":"WeatherContext.js","./Modal":"Component/Modal.js"}],"Component/MainSide.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -29990,13 +30032,13 @@ function MainSide() {
     value: hightLights && hightLights.humidity,
     max: "100",
     style: {
-      width: 260,
+      width: 230,
       color: 'lightyellow'
     }
   }, " ", hightLights && hightLights.humidity), /*#__PURE__*/_react.default.createElement("p", {
     className: "align_end"
   }, "%")), /*#__PURE__*/_react.default.createElement("div", {
-    className: "card dvisibility"
+    className: "card visibility"
   }, /*#__PURE__*/_react.default.createElement("h5", null, "visibility"), /*#__PURE__*/_react.default.createElement("p", {
     className: "big_letter"
   }, Math.round(hightLights && hightLights.visibility * 10) / 10, " ", /*#__PURE__*/_react.default.createElement("span", null, "miles"))), /*#__PURE__*/_react.default.createElement("div", {
@@ -30090,7 +30132,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60787" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59168" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

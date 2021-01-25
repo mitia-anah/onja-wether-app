@@ -1,7 +1,6 @@
 import React, { useContext } from 'react'
 import { Context } from '../WeatherContext'
 
-
 function MainSide() {
     const { state } = useContext(Context)
     const { todayWeather } = state
@@ -11,8 +10,6 @@ function MainSide() {
     console.log(weatherDuringTheWeek);
     const hightLights = todayWeather && todayWeather.consolidated_weather && todayWeather.consolidated_weather[0];
     console.log(hightLights);
-
-
 
     return (
         <div className='mainSide_wrapper'>
@@ -49,10 +46,10 @@ function MainSide() {
                             <span className="label">50</span>
                             <span className="label">100</span>
                         </div>
-                        <progress className='yellow_bar' value={hightLights && hightLights.humidity} max='100' style={{ width: 260, color: 'lightyellow' }} > {hightLights && hightLights.humidity}</progress>
+                        <progress className='yellow_bar' value={hightLights && hightLights.humidity} max='100' style={{ width: 230, color: 'lightyellow' }} > {hightLights && hightLights.humidity}</progress>
                         <p className='align_end'>%</p>
                     </div>
-                    <div className='card dvisibility'>
+                    <div className='card visibility'>
                         <h5>visibility</h5>
                         <p className='big_letter'>{Math.round(hightLights && hightLights.visibility * 10) / 10} <span>miles</span></p>
                     </div>
@@ -63,7 +60,6 @@ function MainSide() {
                 </div>
             </div>
         </div>
-
     )
 }
 

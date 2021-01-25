@@ -3,6 +3,7 @@ import SideBar from './Component/SideBar'
 import MainSide from './Component/MainSide'
 import { Context } from './WeatherContext'
 
+
 function App() {
     const { query, setQuery } = useContext(Context)
 
