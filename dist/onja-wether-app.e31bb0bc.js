@@ -29850,7 +29850,13 @@ function WeatherContextProvider({
     }
   }, children);
 }
-},{"react":"node_modules/react/index.js"}],"Component/Modal.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js"}],"node_modules/material-design-icons/index.js":[function(require,module,exports) {
+var __dirname = "C:\\Users\\Student\\code\\onja-wether-app\\node_modules\\material-design-icons";
+module.exports = {
+  STATIC_PATH: __dirname,
+};
+
+},{}],"Component/Modal.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -29861,6 +29867,8 @@ exports.default = void 0;
 var _react = _interopRequireWildcard(require("react"));
 
 var _WeatherContext = require("../WeatherContext");
+
+var _materialDesignIcons = require("material-design-icons");
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
@@ -29894,7 +29902,7 @@ function Input({
   }, /*#__PURE__*/_react.default.createElement("button", {
     className: "active_btn",
     onClick: () => setActiveSearch(!activeSearch)
-  }, "Search For Places"), /*#__PURE__*/_react.default.createElement("button", null, "icon")) : /*#__PURE__*/_react.default.createElement("form", {
+  }, "Search For Places"), /*#__PURE__*/_react.default.createElement("button", null, "gpsFixed")) : /*#__PURE__*/_react.default.createElement("form", {
     onSubmit: handleSubmit
   }, /*#__PURE__*/_react.default.createElement("input", {
     className: "inputSearch",
@@ -29908,7 +29916,7 @@ function Input({
 
 var _default = Input;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","../WeatherContext":"WeatherContext.js"}],"Component/SideBar.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","../WeatherContext":"WeatherContext.js","material-design-icons":"node_modules/material-design-icons/index.js"}],"Component/SideBar.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -30032,7 +30040,7 @@ function MainSide() {
     value: hightLights && hightLights.humidity,
     max: "100",
     style: {
-      width: 230,
+      width: 200,
       color: 'lightyellow'
     }
   }, " ", hightLights && hightLights.humidity), /*#__PURE__*/_react.default.createElement("p", {
@@ -30132,7 +30140,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59168" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61260" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

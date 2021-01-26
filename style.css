@@ -9,16 +9,44 @@ body {
      padding: 1rem;
  }
  /* Search bar */
+ form {
+     display: flex;
+     flex-direction: row;
+     gap: 1rem;
+ }
+ .first_page_btn {
+     display: flex;
+     justify-content: space-between;
+ }
+ .active_btn {
+    background: #6E707A;
+    font-weight: 500;
+    font-size: 16px;
+    color: #E7E7EB;
+    padding: 0.5rem;
+    border-style: none;
+ }
  .inputSearch {
-     padding: 1rem;
+     padding: 0.5rem;
      background: #1E213A;
      border: 1px solid white;
+ }
+
+ .buttonSearch {
+    padding: 0.5rem;
+    background: #3C47E9;
+    border-style: none;
+    font-weight: 600;
+    font-size: 16px;
+    font-family: Raleway;
+    color: #E7E7EB;
  }
 
  /* Side bar */
  .sideBar_container {
     background: #1E213A;
     padding: 1rem;
+    overflow: auto;
 }
 .sideBar_content {
     max-width: 90%;
@@ -129,7 +157,7 @@ body {
     display: flex;
     flex-direction: row-reverse;
     margin-block-start: 0;
-    margin-inline-end: 3rem;
+    margin-inline-end: 2rem;
 }
 .active_btn {
     width: 200px;

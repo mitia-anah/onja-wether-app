@@ -46,7 +46,7 @@ function MainSide() {
                             <span className="label">50</span>
                             <span className="label">100</span>
                         </div>
-                        <progress className='yellow_bar' value={hightLights && hightLights.humidity} max='100' style={{ width: 230, color: 'lightyellow' }} > {hightLights && hightLights.humidity}</progress>
+                        <progress className='yellow_bar' value={hightLights && hightLights.humidity} max='100' style={{ width: 200, color: 'lightyellow' }} > {hightLights && hightLights.humidity}</progress>
                         <p className='align_end'>%</p>
                     </div>
                     <div className='card visibility'>

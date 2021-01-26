@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { Context } from '../WeatherContext';
+import {gpsFixed} from 'material-design-icons'
 
 function Input({ query, setQuery }) {
     const [activeSearch, setActiveSearch] = useState(false);
@@ -19,7 +20,7 @@ function Input({ query, setQuery }) {
             (
                 <div className='first_page_btn'>
                     <button className='active_btn' onClick={() => setActiveSearch(!activeSearch)}>Search For Places</button>
-                    <button>icon</button>
+                    <button>gpsFixed</button>
                 </div>)
                 :
                 (
