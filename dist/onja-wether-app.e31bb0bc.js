@@ -29850,13 +29850,7 @@ function WeatherContextProvider({
     }
   }, children);
 }
-},{"react":"node_modules/react/index.js"}],"node_modules/material-design-icons/index.js":[function(require,module,exports) {
-var __dirname = "C:\\Users\\Student\\code\\onja-wether-app\\node_modules\\material-design-icons";
-module.exports = {
-  STATIC_PATH: __dirname,
-};
-
-},{}],"Component/Modal.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js"}],"Component/Modal.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -29868,16 +29862,15 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _WeatherContext = require("../WeatherContext");
 
-var _materialDesignIcons = require("material-design-icons");
-
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-function Input({
-  query,
-  setQuery
-}) {
+function Input() {
+  const {
+    query,
+    setQuery
+  } = (0, _react.useContext)(_WeatherContext.Context);
   const [activeSearch, setActiveSearch] = (0, _react.useState)(false);
   const {
     state,
@@ -29916,7 +29909,7 @@ function Input({
 
 var _default = Input;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","../WeatherContext":"WeatherContext.js","material-design-icons":"node_modules/material-design-icons/index.js"}],"Component/SideBar.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","../WeatherContext":"WeatherContext.js"}],"Component/SideBar.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -30081,16 +30074,10 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function App() {
-  const {
-    query,
-    setQuery
-  } = (0, _react.useContext)(_WeatherContext.Context);
   return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h3", null, "Weather App"), /*#__PURE__*/_react.default.createElement("div", {
     className: "main"
   }, /*#__PURE__*/_react.default.createElement(_SideBar.default, {
-    className: "sideBar",
-    query: query,
-    setQuery: setQuery
+    className: "sideBar"
   }), /*#__PURE__*/_react.default.createElement(_MainSide.default, {
     className: "mainSide"
   })));
@@ -30140,7 +30127,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61260" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55188" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

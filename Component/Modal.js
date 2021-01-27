@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react'
 import { Context } from '../WeatherContext';
-import {gpsFixed} from 'material-design-icons'
 
-function Input({ query, setQuery }) {
+function Input() {
+    const { query, setQuery } = useContext(Context)
     const [activeSearch, setActiveSearch] = useState(false);
 
     const { state, dispatch, FetchData } = useContext(Context);

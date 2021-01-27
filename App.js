@@ -5,14 +5,13 @@ import { Context } from './WeatherContext'
 
 
 function App() {
-    const { query, setQuery } = useContext(Context)
+   
 
     return (
         <div>
             <h3>Weather App</h3>
             <div className='main'>
-                <SideBar className='sideBar' query={query}
-                    setQuery={setQuery} />
+                <SideBar className='sideBar' />
                 <MainSide className='mainSide' />
             </div>
         </div>
